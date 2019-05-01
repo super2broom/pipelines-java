@@ -18,16 +18,17 @@ pool:
   vmImage: "vs2017-win2016"
 
 steps:
-- task: Maven@3
+- task: Gradle@2
   inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
+    workingDirectory: ''
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '$(jdk_version)'
+    jdkVersionOption: '1.11'
     jdkArchitectureOption: 'x64'
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
-    goals: 'package'
+    tasks: 'build'
     
 
 - task: PublishCodeCoverageResults@1
